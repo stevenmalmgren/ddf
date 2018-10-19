@@ -648,7 +648,7 @@ public class EndpointUtil {
   private Pattern iso8601Offset =
       Pattern.compile("\\d+-?\\d+-?\\d+T\\d+:?\\d+:?\\d+(\\.\\d+)?[+\\-]\\d+:\\d+");
 
-  public Serializable parseDate(Serializable value) {
+  public Instant parseDate(Serializable value) {
 
     if (value instanceof Date) {
       return ((Date) value).toInstant();
@@ -672,7 +672,8 @@ public class EndpointUtil {
       try {
         return Instant.ofEpochMilli(Long.parseLong(string));
       } catch (NumberFormatException ex) {
-        throw new IllegalArgumentException(ex);
+        LOGGER.debug("Failed to create Epoch time from a numeric: {}", string, ex);
+        return null;
       }
     }
 
@@ -693,9 +694,10 @@ public class EndpointUtil {
     dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
     try {
-      return dateFormat.parse(value.toString()).toInstant();
+      return dateFormat.parse(string).toInstant();
     } catch (ParseException e) {
-      throw new IllegalArgumentException(e);
+      LOGGER.debug("Failed to parse as a dateFormat time from a numeric: {}", string, e);
+      return null;
     }
   }
 
