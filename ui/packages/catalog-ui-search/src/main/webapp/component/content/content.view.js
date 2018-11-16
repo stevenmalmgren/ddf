@@ -60,10 +60,19 @@ var ContentView = Marionette.LayoutView.extend({
   handleWorkspaceChange(contentModel) {
     if (
       contentModel &&
-      Object.keys(contentModel.changedAttributes())[0] === 'currentWorkspace'
+      Object.keys(contentModel.changedAttributes()).some(
+        key => key === 'currentWorkspace'
+      )
     ) {
-      this.stopListening(contentModel.previousAttributes().currentWorkspace)
+      this.handlePreviousWorkspace(
+        contentModel.previousAttributes().currentWorkspace
+      )
       this.updateContentLeft()
+    }
+  },
+  handlePreviousWorkspace(previousWorkspace) {
+    if (previousWorkspace) {
+      this.stopListening(previousWorkspace, 'partialSync')
     }
   },
   startLoading: function() {
@@ -76,13 +85,16 @@ var ContentView = Marionette.LayoutView.extend({
     const currentWorkspace = store.get('content').get('currentWorkspace')
     store.clearSelectedResults()
     this.contentLeft.empty()
+    if (currentWorkspace === undefined) {
+      this.endLoading()
+      return
+    }
     if (currentWorkspace.isPartial()) {
       this.startLoading()
       this.stopListening(currentWorkspace, 'partialSync')
       this.listenToOnce(currentWorkspace, 'partialSync', this.updateContentLeft)
       currentWorkspace.fetchPartial()
     } else {
-      store.clearSelectedResults()
       this.contentLeft.show(
         new WorkspaceContentTabsView({
           model: new WorkspaceContentTabs(),
