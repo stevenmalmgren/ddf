@@ -24,6 +24,7 @@ const UploadItemCollectionView = require('../upload-item/upload-item.collection.
 const UploadBatchModel = require('../../js/model/UploadBatch.js')
 const Common = require('../../js/Common.js')
 const UploadSummary = require('../upload-summary/upload-summary.view.js')
+const ProgressBarWithText = require('../progress/progress-car')
 
 function namespacedEvent(event, view) {
   return event + '.' + view.cid
@@ -149,7 +150,8 @@ module.exports = Marionette.LayoutView.extend({
     this.files.show(
       new UploadItemCollectionView({
         collection: this.uploadBatchModel.get('uploads'),
-      })
+      }),
+      //new ProgressBarWithText();
     )
   },
   showSummary() {
