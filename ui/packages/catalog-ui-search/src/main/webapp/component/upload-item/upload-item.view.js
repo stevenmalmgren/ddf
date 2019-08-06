@@ -18,9 +18,29 @@ const Marionette = require('marionette')
 const $ = require('jquery')
 const template = require('./upload-item.hbs')
 const CustomElements = require('../../js/CustomElements.js')
+import {ItemCreationTable} from '../../react-component/progress/upload-card'
+import React from 'react'
 
 module.exports = Marionette.LayoutView.extend({
-  template,
+  template() {
+
+
+    const progress=this.model.get('percentage');
+    const message='stop';
+    const uploads=[
+            {title: this.model.get('id'),
+             fileType: 'PDF',
+             progress: this.model.get('percentage'),
+             message: 'Stop'},
+            ];
+    return (
+        <ItemCreationTable progress={progress} 
+                           message={message} 
+                           uploads={uploads}>
+
+        </ItemCreationTable>
+    )
+  },
   tagName: CustomElements.register('upload-item'),
   events: {
     'click .upload-cancel': 'cancelUpload',

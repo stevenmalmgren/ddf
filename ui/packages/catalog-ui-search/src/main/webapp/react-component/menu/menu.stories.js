@@ -12,7 +12,7 @@
  * <http://www.gnu.org/licenses/lgpl.html>.
  *
  **/
-import * as React from 'react'
+import * as React from 'react' 
 
 import { storiesOf, action, array, text } from '../storybook'
 

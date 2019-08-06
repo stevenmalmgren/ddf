@@ -13,8 +13,7 @@
  *
  **/
 import  React, { useState } from 'react'
-
-import styled from '../styles/styled-components'
+import styled from '../../react-component/styles/styled-components'
 
 const StatusContainer = styled.div`
     display: flex;

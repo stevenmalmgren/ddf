@@ -14,7 +14,7 @@
  **/
 
 import  React, { useState } from 'react'
-import styled from '../styles/styled-components'
+import styled from '../../react-component/styles/styled-components'
 import {ProgressBarWithText} from './progress-car'
 
 const ItemCreationTableStyleComp = styled.table`

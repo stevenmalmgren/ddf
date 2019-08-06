@@ -14,7 +14,6 @@
  **/
 import  React, { useState } from 'react'
 
-import styled from '../styles/styled-components'
 
 import { storiesOf, number, text } from '../storybook'
 
