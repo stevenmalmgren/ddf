@@ -28,7 +28,6 @@ const metacardDefinitions = require('../../singletons/metacard-definitions')
 const LightBoxContainer = styled.div`
   width: 100%;
   height: 100%;
-  border: 2px solid green;
   display: flex;
   flex-flow: column;
 `

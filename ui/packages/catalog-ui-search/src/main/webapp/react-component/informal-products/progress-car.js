@@ -26,6 +26,7 @@ const Root = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-grow: 9;
+  width: 65%;
   height: calc(${props => props.theme.minimumLineSize} / 2);
 `
 
@@ -47,6 +48,7 @@ const Foreground = styled.div`
 `
 
 const Line = styled.div`
+  width: 35%;
   flex-grow: 1;
   line-height: ${props => props.theme.minimumLineSize};
   padding-left: ${props => props.theme.minimumSpacing};

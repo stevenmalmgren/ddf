@@ -13,12 +13,8 @@
  *
  **/
 
-const Marionette = require('marionette')
 const IngestView = require('../ingest/ingest.view')
-const BuilderView = require('../builder/builder.view')
-import AttributeEditor from '../tabs/list-add/attribute-editor'
 import { BuilderStart } from '../builder/builder-start'
-import { InformalProductsTable } from '../../react-component/informal-products/informal-upload-table'
 import React from 'react'
 import MarionetteRegionContainer from '../../react-component/marionette-region-container'
 import styled from 'styled-components'

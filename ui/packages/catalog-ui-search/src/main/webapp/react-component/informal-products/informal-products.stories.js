@@ -33,22 +33,40 @@ stories.add('progress bar with text', () => {
 stories.add('uploads table', () => {
   const uploads = [
     {
-      title: 'Document 1',
-      fileType: 'JIF LOREM EPSO DO DA UNUM',
-      progress: 40,
-      message: 'Stop',
+      onClick: () => alert('Message clicked!'),
+      text: 'Stop',
+      file: {
+        name: 'Document 1',
+        fileType: 'JIF LOREM EPSO DO DA UNUM',
+        upload: {
+          progress: 40,
+        },
+        message: '',
+      },
     },
     {
-      title: 'Document 2: Document Reloaded',
-      fileType: 'NEO',
-      progress: null,
-      message: 'Failed. Try again?',
+      onClick: () => alert('Message clicked!'),
+      text: 'Stop',
+      file: {
+        name: 'Document 2: JIF RELOADED',
+        type: 'NEO',
+        upload: {
+          progress: 40,
+        },
+        message: '',
+      },
     },
     {
-      title: 'Document 3: Document Revolutions',
-      fileType: 'PDF',
-      progress: 10,
-      message: 'Duplicate Detected',
+      onClick: () => alert('Message clicked!'),
+      text: 'Stop',
+      file: {
+        name: 'Document 3: Back to the .ttf',
+        type: 'ttf',
+        upload: {
+          progress: 40,
+        },
+        message: '',
+      },
     },
   ]
 
