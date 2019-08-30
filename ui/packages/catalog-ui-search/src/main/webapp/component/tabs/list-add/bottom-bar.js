@@ -16,11 +16,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const BottomBarContainer = styled.div`
-  position: absolute;
   width: 100%;
   bottom: 0;
   display: flex;
   flex-flow: row-reverse;
+  flex-grow: 1;
   border-top: 1px solid;
   padding: ${props => props.theme.minimumSpacing};
 `

@@ -25,15 +25,20 @@ const $ = require('jquery')
 const user = require('../../../component/singletons/user-instance')
 const metacardDefinitions = require('../../singletons/metacard-definitions')
 
+const LightBoxContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 2px solid green;
+  display: flex;
+  flex-flow: column;
+`
+
 const AttributeEditorView = styled.div`
   display: flex;
   overflow-y: scroll;
-  height: 80%;
-  margin: 32px;
-`
-
-const ViewWithBottomBar = styled.div`
+  flex-grow: 9;
   height: 100%;
+  margin: 16px;
 `
 
 const ButtonStyle = styled.div`
@@ -42,6 +47,8 @@ const ButtonStyle = styled.div`
   background-color: ${props => props.theme.primaryColor};
   align-self: center;
 `
+
+const capitalize = value => value.charAt(0).toUpperCase() + value.slice(1)
 
 class NewItemManager extends React.Component {
   constructor(props) {
@@ -134,7 +141,7 @@ class NewItemManager extends React.Component {
   getFileModels(uploadPayload) {
     return uploadPayload.attributes.uploads.models.map(model => {
       let uploadContainer = {}
-      uploadContainer.text = model.attributes.file.status
+      uploadContainer.text = capitalize(model.attributes.file.status)
       if (model.attributes.file.status === 'uploading') {
         uploadContainer.onClick = model.cancel.bind(model)
         uploadContainer.text = 'Stop'
@@ -213,11 +220,11 @@ class NewItemManager extends React.Component {
       case 'manual upload':
         const addButton = (
           <ButtonStyle>
-            <button onClick={this.createManualMetacard}>{'Add Item'}</button>
+            <button onClick={this.createManualMetacard}>{'Add item'}</button>
           </ButtonStyle>
         )
         return (
-          <ViewWithBottomBar>
+          <LightBoxContainer>
             <AttributeEditorView>
               <AttributeEditor
                 metacardType={this.state.selectedMetacardType}
@@ -225,23 +232,23 @@ class NewItemManager extends React.Component {
               />
             </AttributeEditorView>
             <BottomBar children={[addButton]} />
-          </ViewWithBottomBar>
+          </LightBoxContainer>
         )
       case 'informal table':
         const viewItemsButton = (
           <ButtonStyle>
-            <button onClick={this.props.closeModal}>{'View Items'}</button>
+            <button onClick={this.props.closeModal}>{'View items'}</button>
           </ButtonStyle>
         )
 
         return (
-          <ViewWithBottomBar>
+          <LightBoxContainer>
             <InformalProductsTable uploads={this.state.uploads} />
             <BottomBar
               bottomBarText={this.state.informalBottomText}
               children={[viewItemsButton]}
             />
-          </ViewWithBottomBar>
+          </LightBoxContainer>
         )
     }
   }

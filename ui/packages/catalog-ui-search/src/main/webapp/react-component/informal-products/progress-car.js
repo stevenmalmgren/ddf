@@ -50,7 +50,6 @@ const Line = styled.div`
   flex-grow: 1;
   line-height: ${props => props.theme.minimumLineSize};
   padding-left: ${props => props.theme.minimumSpacing};
-  color: ${props => props.theme.primaryColor};
 `
 
 const Message = styled.div`

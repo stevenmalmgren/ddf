@@ -20,10 +20,10 @@ import { ProgressBarWithText } from './progress-car'
 const InformalProductsContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 70%;
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 5%;
+  justify-content: center;
+  height: 100%;
+  margin: 16px;
+  flex-grow: 9;
 `
 
 const InformalProductsTableStyleComp = styled.table`
@@ -81,7 +81,7 @@ const InformalProductsTable = props => {
       <InformalProductsTableStyleComp>
         <thead>
           <tr>
-            <th style={{ width: '50%' }}>Title</th>
+            <th style={{ width: '51%' }}>Title</th>
             <th style={{ width: '15%' }}>Type</th>
             <th style={{ width: '25%' }}>Status</th>
           </tr>

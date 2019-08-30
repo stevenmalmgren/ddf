@@ -58,7 +58,7 @@ const StyleLine = styled.div`
   align-self: center;
   width: 1px;
   height: 75px;
-  background-color: black;
+  border: 1px solid;
 `
 
 const ManualView = styled.div`
