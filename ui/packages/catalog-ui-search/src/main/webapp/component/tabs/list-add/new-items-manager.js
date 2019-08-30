@@ -27,12 +27,9 @@ const metacardDefinitions = require('../../singletons/metacard-definitions')
 
 const AttributeEditorView = styled.div`
   display: flex;
-  width: 50%;
   overflow-y: scroll;
-  height: calc(80% - 1.8rem);
-  background-color: ${props => props.theme.backgroundNavigation};
-  margin-top: calc(1.5 * ${props => props.theme.minimumSpacing});
-  margin-left: ${props => props.theme.minimumSpacing};
+  height: 80%;
+  margin: 32px;
 `
 
 const ViewWithBottomBar = styled.div`
@@ -108,7 +105,7 @@ class NewItemManager extends React.Component {
 
     let errorText = ''
     if (uploadPayload.attributes.errors > 0) {
-      errorText = `${uploadPayload.attributes.errors} errors.`
+      errorText = `${uploadPayload.attributes.errors} failed.`
     }
 
     let issueText = ''
@@ -140,7 +137,11 @@ class NewItemManager extends React.Component {
       uploadContainer.text = model.attributes.file.status
       if (model.attributes.file.status === 'uploading') {
         uploadContainer.onClick = model.cancel.bind(model)
-        uploadContainer.text = 'stop'
+        uploadContainer.text = 'Stop'
+      } else if (model.attributes.file.status === 'error') {
+        uploadContainer.text = 'Failed'
+      } else if (model.attributes.file.status === 'success') {
+        uploadContainer.text = 'Completed'
       }
       uploadContainer.file = model.attributes.file
       return uploadContainer

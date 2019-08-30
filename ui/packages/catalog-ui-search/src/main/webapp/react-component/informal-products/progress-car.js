@@ -26,11 +26,11 @@ const Root = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-grow: 9;
-  height: ${props => props.theme.minimumLineSize};
+  height: calc(${props => props.theme.minimumLineSize} / 2);
 `
 
 const Background = styled.div`
-  height: 50%;
+  height: 35%;
   background: ${props => props.theme.backgroundAccentContent};
   box-shadow: inset 0px 1px 1px 1px rgb(11, 24, 33);
   border-radius: calc(${props => props.theme.minimumLineSize} / 4);

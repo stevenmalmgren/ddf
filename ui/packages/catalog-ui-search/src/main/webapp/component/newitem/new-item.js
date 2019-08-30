@@ -27,12 +27,18 @@ const ItemCreationView = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: ${props => props.theme.minimumSpacing};
-  height: calc(100% - 1.8rem);
+  height: 100%;
 `
+
 const UploadView = styled.div`
   width: 60%;
-  height: calc(100% - 1.8rem);
+  height: 94%;
+  margin: 1rem;
+  margin-right: 0;
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  justify-content: center;
 `
 
 const OrContainer = styled.div`
@@ -41,13 +47,18 @@ const OrContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 6%;
+  padding: 10px 0;
+`
+
+const OrStyling = styled.div`
+  padding: 8px 0;
 `
 
 const StyleLine = styled.div`
   align-self: center;
   width: 1px;
   height: 75px;
-  box-shadow: 0px 0px 0px 1px;
+  background-color: black;
 `
 
 const ManualView = styled.div`
@@ -72,7 +83,7 @@ function NewItem(props) {
         </UploadView>
         <OrContainer>
           <StyleLine />
-          <div>OR</div>
+          <OrStyling>OR</OrStyling>
           <StyleLine />
         </OrContainer>
 

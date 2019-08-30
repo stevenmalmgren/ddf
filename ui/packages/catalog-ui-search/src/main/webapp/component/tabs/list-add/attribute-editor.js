@@ -23,7 +23,6 @@ const PropertyCollectionView = require('../../property/property.collection.view'
 const AttributeEditorContainer = styled.div`
   display: flex;
   flex-flow: column;
-  background-color: ${props => props.theme.backgroundNavigation};
   border-radius: 3px;
   intrigue-property {
     padding: 0;

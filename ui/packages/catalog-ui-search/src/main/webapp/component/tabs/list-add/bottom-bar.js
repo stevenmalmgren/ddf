@@ -21,7 +21,7 @@ const BottomBarContainer = styled.div`
   bottom: 0;
   display: flex;
   flex-flow: row-reverse;
-  border-top: ${props => props.theme.backgroundNavigation} 2px solid;
+  border-top: 1px solid;
   padding: ${props => props.theme.minimumSpacing};
 `
 
