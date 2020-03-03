@@ -89,8 +89,8 @@ const reducer = (state = [{}], action) => {
     case 'PREVIOUS_PAGE':
       return state.slice(0, -1)
     case 'UPDATE_RESULTS':
-      const srcs = action.payload.results
-        .map(({ src }) => src)
+      const sources = action.payload.results
+        .map(({ sources }) => sources)
         .reduce((counts, src) => {
           if (counts[src] === undefined) {
             counts[src] = 0
@@ -99,7 +99,7 @@ const reducer = (state = [{}], action) => {
           return counts
         }, {})
 
-      return state.slice(0, -1).concat(srcs)
+      return state.slice(0, -1).concat(sources)
     default:
       return state
   }
@@ -203,7 +203,7 @@ Query.Model = PartialAssociatedModel.extend({
     this.trigger('resetToDefaults')
   },
   applyDefaults() {
-    this.set(_.pick(this.defaults(), ['sorts', 'federation', 'src']))
+    this.set(_.pick(this.defaults(), ['sorts', 'federation', 'sources']))
   },
   revert() {
     this.trigger('revert')
@@ -244,10 +244,10 @@ Query.Model = PartialAssociatedModel.extend({
 
     switch (data.federation) {
       case 'local':
-        data.src = [Sources.localCatalog]
+        data.sources = [Sources.localCatalog]
         break
       case 'enterprise':
-        data.src = _.pluck(Sources.toJSON(), 'id')
+        data.sources = _.pluck(Sources.toJSON(), 'id')
         break
       case 'selected':
         // already in correct format
@@ -263,7 +263,7 @@ Query.Model = PartialAssociatedModel.extend({
 
     return _.pick(
       data,
-      'src',
+      'sources',
       'start',
       'count',
       'timeout',
@@ -331,7 +331,7 @@ Query.Model = PartialAssociatedModel.extend({
     if (options.resultCountOnly) {
       data.count = 0
     }
-    const sources = data.src
+    const sources = data.sources
     const initialStatus = sources.map(src => ({
       id: src,
     }))
@@ -380,7 +380,7 @@ Query.Model = PartialAssociatedModel.extend({
     const currentSearches = this.preQueryPlugin(
       sources.map(src => ({
         ...data,
-        src,
+        sources: src,
         start: query.getStartIndexForSource(src),
         // since the "cache" source will return all cached results, need to
         // limit the cached results to only those from a selected source
@@ -441,7 +441,7 @@ Query.Model = PartialAssociatedModel.extend({
                 type: 'error',
               })
             }
-
+            //TODO doesn't look like src means the same thing on the Search object
             const srcStatus = result.get('status').get(search.src)
             if (srcStatus) {
               srcStatus.set({
@@ -479,9 +479,9 @@ Query.Model = PartialAssociatedModel.extend({
       }
     })
     if (sourceArr.length > 0) {
-      this.set('src', sourceArr.join(','))
+      this.set('sources', sourceArr.join(','))
     } else {
-      this.set('src', '')
+      this.set('sources', '')
     }
   },
   getId() {

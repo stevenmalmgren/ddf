@@ -130,7 +130,7 @@ module.exports = Marionette.LayoutView.extend({
       filterTree: userDefaultTemplate['filterTemplate'],
       src:
         (userDefaultTemplate['querySettings'] &&
-          userDefaultTemplate['querySettings'].src) ||
+          userDefaultTemplate['querySettings'].sources) ||
         '',
       federation:
         (userDefaultTemplate['querySettings'] &&

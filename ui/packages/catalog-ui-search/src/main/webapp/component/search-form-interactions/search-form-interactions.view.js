@@ -183,7 +183,9 @@ Anyone who has access to this search ${formTitleLowerCase} will subsequently los
               type: 'custom',
               title: template.title,
               filterTree: template.filterTemplate,
-              src: (template.querySettings && template.querySettings.src) || '',
+              src:
+                (template.querySettings && template.querySettings.sources) ||
+                '',
               federation:
                 (template.querySettings && template.querySettings.federation) ||
                 'enterprise',

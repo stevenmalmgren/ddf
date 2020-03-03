@@ -138,7 +138,8 @@ function removeImpertinentFailures(queryId) {
   if (failedQueries[queryId]) {
     _.forEach(failedQueries[queryId].failures, (timeRanges, srcId) => {
       if (
-        failedQueries[queryId].originalQuery.get('src').indexOf(srcId) === -1
+        failedQueries[queryId].originalQuery.get('sources').indexOf(srcId) ===
+        -1
       ) {
         delete failedQueries[queryId].failures[srcId]
       }
